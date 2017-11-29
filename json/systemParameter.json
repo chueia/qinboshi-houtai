@@ -1,0 +1,14 @@
+{
+    "cmsName": "禽博士后台管理模版",
+    "version": "v1.0.1",
+    "author": "恩宜神",
+    "homePage": "page/index.html",
+    "server": "windows",
+    "dataBase": "8.00.2039",
+    "maxUpload": "2M",
+    "userRights": "总管理员",
+    "description": "恩宜神提供技术支持"
+    // "powerby": "copyright @2017 请叫我马哥",
+    // "record": "京ICP备14040xxx号-1",
+    // "keywords": "layui，马哥，cms，模版"
+}
