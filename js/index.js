@@ -249,40 +249,40 @@ layui.config({
 	})
 
 	//刷新后还原打开的窗口
-	if(window.sessionStorage.getItem("menu") != null){
-		menu = JSON.parse(window.sessionStorage.getItem("menu"));
-		curmenu = window.sessionStorage.getItem("curmenu");
-		var openTitle = '';
-		for(var i=0;i<menu.length;i++){
-			openTitle = '';
-			if(menu[i].icon){
-				if(menu[i].icon.split("-")[0] == 'icon'){
-					openTitle += '<i class="iconfont '+menu[i].icon+'"></i>';
-				}else{
-					openTitle += '<i class="layui-icon">'+menu[i].icon+'</i>';
-				}
-			}
-			openTitle += '<cite>'+menu[i].title+'</cite>';
-			openTitle += '<i class="layui-icon layui-unselect layui-tab-close" data-id="'+menu[i].layId+'">&#x1006;</i>';
-			element.tabAdd("bodyTab",{
-				title : openTitle,
-		        content :"<iframe src='"+menu[i].href+"' data-id='"+menu[i].layId+"'></frame>",
-		        id : menu[i].layId
-			})
-			//定位到刷新前的窗口
-			if(curmenu != "undefined"){
-				if(curmenu == '' || curmenu == "null"){  //定位到后台首页
-					element.tabChange("bodyTab",'');
-				}else if(JSON.parse(curmenu).title == menu[i].title){  //定位到刷新前的页面
-					element.tabChange("bodyTab",menu[i].layId);
-				}
-			}else{
-				element.tabChange("bodyTab",menu[menu.length-1].layId);
-			}
-		}
-		//渲染顶部窗口
-		tab.tabMove();
-	}
+	// if(window.sessionStorage.getItem("menu") != null){
+	// 	menu = JSON.parse(window.sessionStorage.getItem("menu"));
+	// 	curmenu = window.sessionStorage.getItem("curmenu");
+	// 	var openTitle = '';
+	// 	for(var i=0;i<menu.length;i++){
+	// 		openTitle = '';
+	// 		if(menu[i].icon){
+	// 			if(menu[i].icon.split("-")[0] == 'icon'){
+	// 				openTitle += '<i class="iconfont '+menu[i].icon+'"></i>';
+	// 			}else{
+	// 				openTitle += '<i class="layui-icon">'+menu[i].icon+'</i>';
+	// 			}
+	// 		}
+	// 		openTitle += '<cite>'+menu[i].title+'</cite>';
+	// 		openTitle += '<i class="layui-icon layui-unselect layui-tab-close" data-id="'+menu[i].layId+'">&#x1006;</i>';
+	// 		element.tabAdd("bodyTab",{
+	// 			title : openTitle,
+	// 	        content :"<iframe src='"+menu[i].href+"' data-id='"+menu[i].layId+"'></frame>",
+	// 	        id : menu[i].layId
+	// 		})
+	// 		//定位到刷新前的窗口
+	// 		if(curmenu != "undefined"){
+	// 			if(curmenu == '' || curmenu == "null"){  //定位到后台首页
+	// 				element.tabChange("bodyTab",'');
+	// 			}else if(JSON.parse(curmenu).title == menu[i].title){  //定位到刷新前的页面
+	// 				element.tabChange("bodyTab",menu[i].layId);
+	// 			}
+	// 		}else{
+	// 			element.tabChange("bodyTab",menu[menu.length-1].layId);
+	// 		}
+	// 	}
+	// 	//渲染顶部窗口
+	// 	tab.tabMove();
+	// }
 
 	//刷新当前
 	$(".refresh").on("click",function(){  //此处添加禁止连续点击刷新一是为了降低服务器压力，另外一个就是为了防止超快点击造成chrome本身的一些js文件的报错(不过貌似这个问题还是存在，不过概率小了很多)
