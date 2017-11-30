@@ -10,6 +10,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
+	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
 	<style>
 		.layui-btn {
@@ -57,13 +58,19 @@
 				<input type="text" class="layui-input pro-name" lay-verify="required" name="pro.content" placeholder="请输入净含量">
 			</div>
 		</div>
+		
 		<div class="layui-form-item">
+		<form action="/accory" method="post" enctype="multipart/form-data" id="suonue">
 			<label class="layui-form-label">商品缩略图</label>
 			<button type="button" class="layui-btn">
+			
 				<i class="layui-icon">&#xe67c;</i>上传图片
-				<input type="file" id="img1">
+				<input type="file" id="img1" onchange="changeimg()" />
+					
 			</button>
+	</form>
 		</div>
+		
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品详情图</label>
 			<button type="button" class="layui-btn" id="img2">
@@ -71,26 +78,12 @@
 				<input type="file" id="img2">
 			</button>
 		</div>
-		<!-- <div class="layui-form-item">
-			<br>
-			<div class="layui-block">		
-				<label class="layui-form-label">商品标签</label>
+		<div class="layui-form-item">
+				<label class="layui-form-label">商品简介</label>
 				<div class="layui-input-block">
-					<input type="text" type="text" class="layui-input pro-main" name="pro.label" placeholder="请输入商品属性,最多3个,用逗号隔开">
+					<textarea placeholder="请输入商品简介，用逗号隔开" class="layui-textarea"></textarea>
 				</div>
 			</div>
-			<br>
-			<div class="layui-inline">
-				<label class="layui-form-label">套餐类型</label>
-				<div class="layui-input-inline">
-					<select name="browseLook" class="newsLook" lay-filter="browseLook">
-				        <option value="0">普通套餐</option>
-						<option value="1">大唐套餐</option>
-						<option value="2">单品</option>
-				    </select>
-				</div>
-			</div>
-		</div> -->
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品属性</label>
 			<div class="layui-input-block product-choose">
@@ -106,12 +99,7 @@
 				</div>
 			</div>
 
-			<div class="layui-form-item">
-				<label class="layui-form-label">商品简介</label>
-				<div class="layui-input-block">
-					<textarea placeholder="请输入商品简介，用逗号隔开" class="layui-textarea"></textarea>
-				</div>
-			</div>
+			
 		</div>
 		<div class="product-box taocan layui-anim-scale hide">
 				<div class="layui-form-item">
@@ -137,20 +125,6 @@
 	<script type="text/javascript" src="../../layui/layui.js"></script>
 	<script type="text/javascript" src="newsAdd.js"></script>
 	<script>
-		// $(document).ready(function () {
-		// 	$('.product-choose ').click(function () {
-		// 		//alert(1);
-		// 		if ($('#danping').attr('checked')) {
-		// 			$('.product-box.taocan').addClass('hide');
-		// 			$('.product-box.danping').removeClass('hide');
-		// 			//alert(1)
-		// 		} else {
-		// 			$('.product-box.danping').addClass('hide');
-		// 			$('.product-box.taocan').removeClass('hide');
-		// 			//alert(2)
-		// 		}
-		// 	})
-		// });
 		layui.use('form', function () {
 			var form = layui.form();
 			form.on('radio(test1)', function (data) {
@@ -169,6 +143,12 @@
 			});
 
 		});
+		function changeimg(){
+			console.log("上传图片")
+			$("#suonue").submit(function(){
+				console.log("这里？")
+			});
+		}
 	</script>
 </body>
 
