@@ -29,6 +29,14 @@
 		.hide {
 			display: none;
 		}
+		.layui-form-item .photo{
+			display:inline-block;
+			max-height:245px;
+			max-width:245px;
+		}
+		.layui-form-item .photo img{
+			width:100%;
+		}
 	</style>
 </head>
 
@@ -73,10 +81,17 @@
 		
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品详情图</label>
-			<button type="button" class="layui-btn" id="img2">
-				<i class="layui-icon">&#xe67c;</i>上传图片
-				<input type="file" id="img2">
-			</button>
+			<div>
+					<div class="photo">
+							<img src="../../images/userface1.jpg" alt="">
+						</div>
+					<button type="button" class="layui-btn" id="img2">
+						<i class="layui-icon">&#xe67c;</i>上传图片
+						<input type="file" id="img2">
+					</button>
+			</div>
+			
+			
 		</div>
 		<div class="layui-form-item">
 				<label class="layui-form-label">商品简介</label>
@@ -125,6 +140,7 @@
 	<script type="text/javascript" src="../../layui/layui.js"></script>
 	<script type="text/javascript" src="newsAdd.js"></script>
 	<script>
+		
 		layui.use('form', function () {
 			var form = layui.form();
 			form.on('radio(test1)', function (data) {
@@ -149,6 +165,42 @@
 				console.log("这里？")
 			});
 		}
+		$(document).on('change', '#img1', function () {
+			//alert($(this).val());
+			function getObjectURL(file) {
+				var url = null;
+				if (window.createObjectURL != undefined) { // basic
+					url = window.createObjectURL(file);
+				} else if (window.URL != undefined) { // mozilla(firefox)
+					url = window.URL.createObjectURL(file);
+				} else if (window.webkitURL != undefined) { // webkit or chrome
+					url = window.webkitURL.createObjectURL(file);
+				}
+				return url;
+			}
+			var objUrl = getObjectURL(this.files[0]);
+			console.log("objUrl = " + objUrl);
+			var html = '<div class="photo"><img src="' + objUrl + '" alt=""></div>';
+			$(this).parent().parent().prepend(html);
+		});
+		$(document).on('change', '#img2', function () {
+			//alert($(this).val());
+			function getObjectURL(file) {
+				var url = null;
+				if (window.createObjectURL != undefined) { // basic
+					url = window.createObjectURL(file);
+				} else if (window.URL != undefined) { // mozilla(firefox)
+					url = window.URL.createObjectURL(file);
+				} else if (window.webkitURL != undefined) { // webkit or chrome
+					url = window.webkitURL.createObjectURL(file);
+				}
+				return url;
+			}
+			var objUrl = getObjectURL(this.files[0]);
+			console.log("objUrl = " + objUrl);
+			var html = '<div class="photo"><img src="' + objUrl + '" alt=""></div>';
+			$(this).parent().parent().prepend(html);
+		})
 	</script>
 </body>
 
