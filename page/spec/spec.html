@@ -10,6 +10,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+	
 	<style>
 		.layui-btn{
 			position: relative;
@@ -22,6 +23,9 @@
 		left:0;
 		opacity:0;
 	}
+	.hide{
+	display:none;
+	}
 	</style>
 </head>
 <body class="childrenBody">
@@ -29,62 +33,48 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">套餐名称</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input pro-name" lay-verify="required" placeholder="请输入商品标题">
+				<input type="text" class="layui-input pro-name" lay-verify="required" name="stand.stName" placeholder="请输入套餐名称">
 			</div>
 		</div>
-		<div class="layui-form-item">
-			<!-- <div class="layui-inline">
-				<label class="layui-form-label">自定义属性</label>
-				<div class="layui-input-block">
-					<input type="checkbox" name="tuijian" class="tuijian" title="推荐">
-					<input type="checkbox" name="shenhe" class="newsStatus" title="审核">
-					<input type="checkbox" name="show" class="isShow" title="展示">
-				</div>
-			</div> -->
-			
-			<br>
-			<div class="layui-block">		
-				<label class="layui-form-label">商品属性</label>
-				<div class="layui-input-block">
-					<input type="text" type="text" class="layui-input pro-main" placeholder="请输入商品属性,最多3个,用逗号隔开">
-				</div>
-			</div>
-			<br>
-			<!-- <div class="layui-inline">
-				<label class="layui-form-label">套餐类型</label>
-				<div class="layui-input-inline">
-					<select name="browseLook" class="newsLook" lay-filter="browseLook">
-				        <option value="0">普通套餐</option>
-						<option value="1">大唐套餐</option>
-						<option value="2">单品</option>
-				    </select>
-				</div>
-			</div> -->
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">商品价格</label>
+			<div class="layui-form-item">
+			<label class="layui-form-label">套餐价格</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input pro-price" placeholder="请输入商品价格">
+				<input type="text" class="layui-input pro-name" name="stand.stPrice" lay-verify="required" placeholder="请输入套餐价格">
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">商品缩略图</label>
-			<button type="button" class="layui-btn" >
-				<i class="layui-icon">&#xe67c;</i>上传图片
-				<input type="file" id="img1">
-			  </button>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">商品详情图</label>
-			<button type="button" class="layui-btn" id="img2">
-				<i class="layui-icon">&#xe67c;</i>上传图片
-				<input type="file" id="img2">
-			  </button>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">商品简介</label>
+			<label class="layui-form-label">单位</label>
 			<div class="layui-input-block">
-				<textarea placeholder="请输入商品简介，用逗号隔开" class="layui-textarea"></textarea>
+				<input type="text" class="layui-input pro-name" name="stand.stPrice" lay-verify="required" placeholder="示例：元/盒.没有可不填">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">返现/积分</label>
+			<div class="layui-input-block product-choose">
+				<input type="radio" lay-filter="test1" id="danping" name="product" value="返现" title="返现" checked>
+				<input type="radio" lay-filter="test2" id="taocan" name="product" value="返积分" title="返积分">
+			</div>
+		</div>
+		<div class="product-box layui-anim-scale fanxian">
+			<div class="layui-form-item">
+			<label class="layui-form-label">返现</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input pro-name" name="stand.remoney" lay-verify="required" placeholder="请输入具体数字">
+			</div>
+		</div>
+		</div>
+		<div class="product-box layui-anim-scale fanjifen hide">
+		<div class="layui-form-item">
+			<label class="layui-form-label">返积分</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input pro-name" name="stand.rejifen" lay-verify="required" placeholder="请输入具体数字">
+			</div>
+		</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">套餐特性</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input pro-name" name="stand.stDetail" lay-verify="required" placeholder="请输入套餐特性">
 			</div>
 		</div>
 		
@@ -95,8 +85,27 @@
 		    </div>
 		</div>
 	</form>
+	<script src="../../js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../../layui/layui.js"></script>
-	<script type="text/javascript" src="newsAdd.js"></script>
-	
+	<script type="text/javascript" src="spec.js"></script>
+	<script>
+	layui.use('form', function () {
+		var form = layui.form();
+		form.on('radio(test1)', function (data) {
+			
+			// console.log(data.elem); //得到radio原始DOM对象
+			// console.log(data.value); //被点击的radio的value值
+			$('.product-box.fanjifen').addClass('hide');
+			$('.product-box.fanxian').removeClass('hide');
+		});
+		form.on('radio(test2)', function (data) {
+			$('.product-box.fanxian').addClass('hide');
+			$('.product-box.fanjifen').removeClass('hide');
+			
+			
+		});
+
+	});
+	</script>
 </body>
 </html>
