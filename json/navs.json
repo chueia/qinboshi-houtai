@@ -7,26 +7,14 @@
 	"title" : "商品管理",
 	"icon" : "icon-text",
 	"href" : "page/news/newsList.html",
-	"spread" : false,
-	"children":[
-		{
-			"title" : "商品管理",
-			"icon" : "icon-text",
-			"href" : "page/news/newsList.html",
-			"spread" : false
-		},
-		{
-			"title" : "添加商品",
-			"icon" : "icon-text",
-			"href" : "page/news/newsAdd.html",
-			"spread" : false
-		},{
-			"title" : "套餐管理",
-			"icon" : "&#xe631;",
-			"href" : "page/spec/spec.html",
-			"spread" : false
-		}
-	]
+	"spread" : false
+	
+},{
+	"title" : "套餐管理",
+	"icon" : "icon-text",
+	"href" : "page/spec/spec-main.html",
+	"spread" : false
+	
 },{
 	"title" : "用户管理",
 	"icon" : "&#xe64c;",
@@ -39,3 +27,4 @@
 	"spread" : false
 }
 ]
+
